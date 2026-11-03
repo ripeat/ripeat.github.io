@@ -8,6 +8,9 @@ is installed. Nothing is read from or written to the machine's state.
 ```bash
 ripeat validate                    # ./ripeat.yaml, ./ripeat.policy.yaml, ./ripeat.lock, your recipes
 ripeat validate my-recipe.yaml     # just this file
+ripeat validate --taps            # cached recipes in added packs
+ripeat validate --drafts          # waiting drafts, including approval checks
+ripeat validate --taps --drafts   # both groups, reported separately
 ```
 
 The kind of file is recognised from its content: `*.lock` is a lockfile, otherwise
@@ -63,8 +66,7 @@ Unknown method, a malformed platform key (not like `linux/amd64`), a `sha256` th
 ## What it does not check
 
 `ripeat validate` with no arguments checks your own files: `ripeat.yaml`, `ripeat.policy.yaml`, `ripeat.lock`, your recipes, your saved profiles and the
-administrator policy. It does **not** check the recipes of added packs ([Recipe packs (taps)](./taps)) or waiting drafts ([Drafts from an assistant](./drafts)); those are checked when a
-pack is added or updated, when its recipes are loaded, and when a draft is approved. Name a file to check it by hand: `ripeat validate path/to/draft.yaml`.
+administrator policy. It does not check added packs ([Recipe packs (taps)](./taps)) or waiting drafts ([Drafts from an assistant](./drafts)) unless `--taps` or `--drafts` is selected. With those flags it checks the selected groups and any explicitly named files, not the default file set. Groups are reported separately and errors give a nonzero exit status. Pack checks use cached files and pack rules, not a network refresh; draft checks use the same review as approval. Name a file to check its format by hand: `ripeat validate path/to/draft.yaml`.
 
 ## Strict recipes
 

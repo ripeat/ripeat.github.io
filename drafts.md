@@ -5,9 +5,8 @@ An AI assistant connected through `ripeat mcp` ([ripeat as an MCP server](./mcp)
 
 ## How it works
 
-1. The assistant calls `ripeat_draft_recipe` with a tool's name (and optionally a source such as `apt`, `brew` or `github`).
-2. **ripeat writes the recipe, not the assistant.** It looks the tool up in the package managers on this machine and on GitHub, drafts
-   the recipe from the source it picks with the same fixed rules as `ripeat add` ([Install by name](./find-and-add)), checks it, and
+1. The assistant calls `ripeat_draft_recipe` with a tool's name (and optionally a source such as `apt`, `brew` or `github`). For a vendor installer it can call `ripeat_draft_vendor` with the vendor's HTTPS address and published SHA-256. Your app must show a confirmation before ripeat downloads or inspects it.
+2. **ripeat writes the recipe, not the assistant.** For package-manager and GitHub requests it looks the tool up and drafts it with the same fixed rules as `ripeat add` ([Install by name](./find-and-add)). For a vendor request it inspects the confirmed download and checks its checksum and signature. It checks the recipe and
    saves it in `$RIPEAT_HOME/drafts/<name>.yaml`. The tool accepts a name, a source and a recipe name, and no recipe text, so the assistant
    has no way to put its own commands into a recipe.
    The result says where the file is (`saved_to`), and `ripeat_list_drafts` says which folder it looked in.
@@ -28,9 +27,7 @@ ripeat drafts reject lazygit      # delete the draft
 
 ## What a draft can be
 
-- **Only package-manager and GitHub-release sources.** `apt`, `dnf`, `pacman`, `brew`, `brew_cask`, `winget`, `choco`, `scoop`,
-  `snap`, `flatpak`, `github_release`. Never `shell`, never `manual`, and never `installer` (a vendor `.dmg`, `.pkg`, `.msi` or `.exe`): those need your own decision,
-  so they come from `ripeat add` ([Vendor installers](./installers)). A draft edited into one of those is refused at approval.
+- **Package-manager, GitHub-release and signed vendor-installer sources.** The vendor tool supports `.dmg` and `.pkg` on macOS, `.msi` and `.exe` on Windows. It requires the vendor's published checksum and verifies and pins the signer; unsigned installers are refused. An `.exe` also needs the product name and vendor-documented silent arguments. It never runs the installer. `shell` and `manual` drafts are refused at approval.
 - **Not over an existing recipe.** A name that already has a recipe is not drafted, and approval refuses to replace one.
 - **Within the administrator policy.** A source the policy forbids is not drafted ([Administrator policy](./admin-policy)), and approval
   checks again.

@@ -16,7 +16,7 @@ Every ripeat command, what it changes, and its options. `ripeat` with no argumen
 | `ripeat recipes` | The tools ripeat knows how to install |
 | `ripeat recipes check [name ...]` | Asks the real sources whether each recipe still works on this machine ([Recipes](./recipes)) |
 | `ripeat rules` | The administrator policy in force here, if any ([Administrator policy](./admin-policy)) |
-| `ripeat validate [file ...]` | Checks profiles, recipes, policies and lockfiles for mistakes ([Checking your files](./validate)) |
+| `ripeat validate [file ...] [--taps] [--drafts]` | Checks profiles, recipes, policies and lockfiles for mistakes; the flags explicitly check cached packs or waiting drafts ([Checking your files](./validate)) |
 | `ripeat schema recipe\|profile\|policy\|admin-policy` | A JSON Schema for editor completion |
 | `ripeat version [--check]` | The version. `--check` asks GitHub whether a newer release is out and how to upgrade |
 

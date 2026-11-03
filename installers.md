@@ -93,7 +93,7 @@ A dmg draft is `scope: user`.
 
 - **Fixed address, fixed version.** A vendor that replaces the file at the same address breaks the checksum: ripeat refuses the new file
   until you update the recipe (`ripeat recipes check` only checks that the address answers, not the checksum).
-- **Not from a recipe pack.** A pack may not carry an `.exe` or `.pkg` installer ([Recipe packs (taps)](./taps)), and an assistant never drafts or runs one.
+- **Not from a recipe pack.** A pack may not carry an `.exe` or `.pkg` installer ([Recipe packs (taps)](./taps)). An assistant can request a signed draft after your confirmation, but cannot approve it or run an administrator-requiring or HIGH-risk plan ([Drafts from an assistant](./drafts)).
 - **An msi or exe is only recognised as installed through `product`.** On Windows ripeat reads "Add or remove programs" itself (the machine-wide list, in both its 64-bit and 32-bit views, and the current user's;
   entries Windows hides as system components are left out) and counts the tool as installed when a program whose name contains `product` is listed, ignoring case. That is a registry read, not a command, so it works the same
   in a recipe pack. Without a `product` (or a `check`), ripeat cannot tell the app is there, and `ripeat validate` warns.

@@ -61,7 +61,7 @@ works out dependencies, writes a profile, checks it, and gives you the plan and 
 
 ## The tools
 
-Each does one job. All are read-only except `ripeat_save_profile` and `ripeat_draft_recipe`, which each write one file in ripeat's own folder (and the two run tools, which exist only with `--allow-run`).
+Each does one job. All are read-only except `ripeat_save_profile`, `ripeat_draft_recipe` and `ripeat_draft_vendor`, which write in ripeat's own folder (and the two run tools, which exist only with `--allow-run`).
 
 | Tool | Answers |
 |---|---|
@@ -84,6 +84,7 @@ Each does one job. All are read-only except `ripeat_save_profile` and `ripeat_dr
 | `ripeat_list_profiles`, `ripeat_get_profile` | The saved profiles ([Profiles: your list](./profiles)) |
 | `ripeat_save_profile` | Keep a profile under a name. Checked first; refuses to replace one unless told to. Writes only that file |
 | `ripeat_draft_recipe` | For a tool with no recipe: ripeat drafts the recipe itself from a package manager or GitHub release and saves it as a **draft** that does nothing until you approve it ([Drafts from an assistant](./drafts)). Takes a name and an optional source, never recipe text |
+| `ripeat_draft_vendor` | Prepare a signed vendor-installer draft from a supplied HTTPS address and published SHA-256. Your client asks before download and inspection; you separately approve the draft in a terminal. Nothing is installed |
 | `ripeat_list_drafts`, `ripeat_get_draft` | The drafts waiting for your approval |
 | `ripeat_preview_uninstall`, `ripeat_preview_upgrade`, `ripeat_preview_rollback` | Preview those CLI actions without changing anything. Uninstall refuses tools still required by other managed tools; upgrade checks the configured package managers |
 | `ripeat_run_install`, `ripeat_run_rollback` | **Only with `--allow-run`.** Install tools, or undo the assistant's last install, after you confirm in your app. Refuse a HIGH-risk plan and any step that needs administrator rights ([below](#letting-the-assistant-install-ripeat-mcp---allow-run-off-by-default)) |
@@ -105,7 +106,7 @@ Recipe packs are the person's alone: the assistant is told never to run `ripeat 
 
 A tool that has no recipe is not created by the assistant. It finds where the tool comes from, asks ripeat to prepare a draft
 (`ripeat_draft_recipe`), and tells you to read it and run `ripeat drafts approve <name>` in a terminal, which asks you
-([Drafts from an assistant](./drafts)). A vendor `.dmg`, `.pkg`, `.msi` or `.exe`, a hand-installed (`manual`) tool, or anything with a shell command, is never drafted this way: `ripeat add`. Those installers are rated HIGH, so the run tools refuse them too.
+([Drafts from an assistant](./drafts)). A vendor `.dmg`, `.pkg`, `.msi` or `.exe` can instead be prepared with `ripeat_draft_vendor` after your confirmation. Unsigned installers, hand-installed (`manual`) tools and shell recipes are not drafted through MCP. HIGH-risk plans and admin-requiring installs remain refused by the run tools.
 
 ## Letting the assistant install: `ripeat mcp --allow-run` (off by default)
 
