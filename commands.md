@@ -41,7 +41,7 @@ Every ripeat command, what it changes, and its options. `ripeat` with no argumen
 | `ripeat add <name> --url <https address> --sha256 <hex>` | Drafts a recipe for a vendor `.dmg`, `.pkg`, `.msi` or `.exe`, after checking the checksum and the vendor's signature ([Vendor installers](./installers)). `--kind`, `--app`, `--signer`, `--product`, `--args`, `--uninstall-args`, `--unsigned` |
 | `ripeat bundle` | `export <profile> [file] [--force]`, `import <file-or-https-url> [name] [--sha256 <hex>] [--allow-shell] [--force]`: share a profile together with the recipes you added ([Bundles: profile + recipes](./bundles)). Importing shows and rates every recipe and asks you; there is no `--yes` |
 | `ripeat profile` | `save <name> [file]`, `list`, `show <name>`, `export <name> [file]`, `import <file-or-https-url> [name]`, `remove <name>` ([Profiles: your list](./profiles)) |
-| `ripeat tap` | Recipe packs from GitHub: `list`, `show <name>`, `add owner/repo` (`--ref`, `--as`, `--allow-shell`), `update [name]`, `remove <name>` ([Recipe packs (taps)](./taps)). Adding and updating ask you; there is no `--yes` |
+| `ripeat tap` | Recipe packs from GitHub or an https address: `list`, `show <name>`, `add owner/repo` or `add https://...` (`--ref`, `--sha256`, `--as`, `--allow-shell`), `update [name]`, `remove <name>` ([Recipe packs (taps)](./taps)). Adding and updating ask you; there is no `--yes` |
 | `ripeat drafts` | Recipes an AI assistant prepared: `list`, `show <name>`, `approve <name>`, `reject <name>` ([Drafts from an assistant](./drafts)). Approving asks you; there is no `--yes` |
 
 ## AI assistants

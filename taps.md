@@ -6,6 +6,7 @@ a repository you chose.
 
 ```bash
 ripeat tap add acme/dev-tools            # show what is in it, ask, pin it
+ripeat tap add https://example.org/pack.yaml   # a pack on any static host, pinned by SHA-256
 ripeat tap                               # the packs you have, their commit, how many recipes
 ripeat tap show dev-tools                # the recipes of one pack
 ripeat tap update                        # look for newer commits; show exactly what changes; ask
@@ -16,6 +17,25 @@ ripeat tap remove dev-tools              # forget it and delete its recipes
 
 A repository with a `recipes/` folder at its top, one `name.yaml` per recipe, in the ordinary recipe format ([Recipes](./recipes)). The file name
 must match the recipe's `name`. Sub-folders and other files are ignored. A pack may hold at most 200 recipes of at most 64 KB each.
+
+## A pack at an https address
+
+Any static host (GitLab, Codeberg, your own site) can serve a pack as **one YAML file**, the pack index:
+
+```yaml
+ripeat_pack: 1
+name: acme-web          # optional: the default name for the pack
+recipes:
+  - name: lazygit
+    check: lazygit --version
+    platforms:
+      linux: {method: apt, package: lazygit}
+```
+
+`ripeat tap add https://example.org/pack.yaml [--sha256 hex] [--as name]` downloads it (https only, redirects to http refused, at most 512 KB, at most 200 recipes), prints its
+SHA-256, shows each recipe and asks, like any pack. The SHA-256 of the file is the pin, shown by `ripeat tap` where a commit would be. If the owner of the pack
+publishes the SHA-256, pass it as `--sha256` and the add stops when the file differs. `ripeat tap update` downloads the file again and, when its SHA-256 changed,
+shows the recipes added, changed and removed and asks. Every rule below applies unchanged; `--ref` does not apply to an address.
 
 ## Adding one
 
@@ -67,12 +87,12 @@ own recipe with the same name, which wins ([Recipes](./recipes)). `ripeat add <n
 
 ## Where it lives
 
-`$RIPEAT_HOME/taps/<name>/` holds the accepted recipes and `$RIPEAT_HOME/taps.json` records each pack: repository, branch, pinned commit and
+`$RIPEAT_HOME/taps/<name>/` holds the accepted recipes and `$RIPEAT_HOME/taps.json` records each pack: repository or address, branch, pinned commit and
 whether shell recipes are allowed. Downloads use the GitHub API (a rate limit applies; `GITHUB_TOKEN` raises it).
 
 ## Limits
 
-- GitHub repositories only (public ones; with `GITHUB_TOKEN`, private ones you can read). There is no signature on a pack: its trust is the commit you
+- GitHub repositories (public ones; with `GITHUB_TOKEN`, private ones you can read) and https addresses of a pack index. There is no signature on a pack: its trust is the commit you
   saw and approved, which is why updates show a diff.
 - The commit is pinned, but ripeat does not verify who wrote it. Add packs from people you trust, and read what `tap add` shows.
 - An assistant connected through `ripeat mcp` is told never to run `ripeat tap add` or `ripeat tap update`.
