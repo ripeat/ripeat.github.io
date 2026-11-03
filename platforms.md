@@ -21,6 +21,7 @@
 | ripeat running as a normal user through `sudo` | Covered by the Ubuntu VM CI job (`scripts/linux-vm-test.sh`, passwordless `sudo`); the container tests run as root, where `sudo` is never used |
 | The interactive `sudo` password prompt | Not verified: no CI can type a password |
 | `deb_url` (the `vscode` recipe), `snap` (`hello`), `flatpak` (GNOME Calculator) | Covered by the same VM job. Treat as verified only while that job passes; a missing `snap` is reported as skipped. `deb_url` for `chrome` is not exercised (Chrome is preinstalled on the runner) |
+| Classic-confinement snaps | Discovery, risk rating, install arguments, and saved mode are unit-tested. A real classic snap install, uninstall and rollback have not yet been verified on a disposable Linux machine; the VM job's `hello` snap is strictly confined. |
 
 ## Windows
 

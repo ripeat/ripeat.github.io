@@ -12,8 +12,8 @@ ripeat assess --json ...               # the same report for programs
 ripeat assess --fail-on high ...       # exit with an error at or above a level (medium or high), for scripts
 ```
 
-It resolves the plan exactly as `ripeat plan` would (fallbacks, dependencies, `ripeat.lock`, the administrator
-policy, `--scope`), so the report is about what would really run on this machine.
+It uses the same planning rules as `ripeat plan` (fallbacks, dependencies, `ripeat.lock`, the administrator
+policy, `--scope`). It assesses requested tools independently so it can report all blockers; the full install still resolves the complete request together.
 
 ## What a report shows
 
