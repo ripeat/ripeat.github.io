@@ -1,0 +1,49 @@
+# ripeat
+
+> ripeat sets up a machine from a list of tools and can undo it safely (macOS, Linux, Windows). It shows the plan and its risk, asks before it changes anything, and keeps a journal so every run can be rolled back.
+
+An assistant should prepare the plan and hand the person the command to run; it should not run `ripeat install` or add `--yes`. Start with the skill, or connect ripeat as an MCP server with `ripeat mcp setup`.
+
+- [Agent skill (SKILL.md)](https://ripeat.github.io/skills/ripeat/SKILL.md): the safe flow for an agent with a shell
+
+## Start here
+
+- [Getting started](https://ripeat.github.io/getting-started.md)
+- [How ripeat works](https://ripeat.github.io/architecture.md)
+- [Command reference](https://ripeat.github.io/commands.md)
+
+## Using ripeat
+
+- [Profiles: your list](https://ripeat.github.io/profiles.md)
+- [Install, uninstall, rollback](https://ripeat.github.io/install-and-rollback.md)
+- [Install by name](https://ripeat.github.io/find-and-add.md)
+- [Risk and `assess`](https://ripeat.github.io/assess.md)
+- [Versions and upgrades](https://ripeat.github.io/upgrades.md)
+- [The lockfile](https://ripeat.github.io/lockfile.md)
+- [Restarts and `resume`](https://ripeat.github.io/reboots.md)
+- [When something fails](https://ripeat.github.io/failures.md)
+
+## Recipes
+
+- [Recipes](https://ripeat.github.io/recipes.md)
+- [Downloads (GitHub, URL)](https://ripeat.github.io/downloads.md)
+- [Vendor installers](https://ripeat.github.io/installers.md)
+- [Recipe packs (taps)](https://ripeat.github.io/taps.md)
+- [Drafts from an assistant](https://ripeat.github.io/drafts.md)
+- [Checking your files](https://ripeat.github.io/validate.md)
+
+## AI assistants
+
+- [Set up with your AI assistant](https://ripeat.github.io/ai-setup.md)
+- [For agents: skill and llms.txt](https://ripeat.github.io/agent-skill.md)
+- [ripeat as an MCP server](https://ripeat.github.io/mcp.md)
+
+## Teams and administrators
+
+- [Administrator policy](https://ripeat.github.io/admin-policy.md)
+- [Admin rights](https://ripeat.github.io/privileges.md)
+- [Users and groups](https://ripeat.github.io/policy.md)
+
+## Reference
+
+- [What has been verified](https://ripeat.github.io/platforms.md)
