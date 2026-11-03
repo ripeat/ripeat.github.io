@@ -71,7 +71,7 @@ Each does one job. All are read-only except `ripeat_save_profile` and `ripeat_dr
 | `ripeat_list_installed` | What does ripeat manage here, at which versions, and what depends on it? A tool that was on the machine before ripeat comes back with no method and a note that how it was installed is unknown |
 | `ripeat_outdated` | Do the managed tools have a newer version? Asks `apt`, `dnf`, `pacman` and Homebrew; upgrading stays with the person (`ripeat upgrade`) |
 | `ripeat_history` | The latest 30 runs (id, command, time, status, steps), to explain what `ripeat rollback` would undo |
-| `ripeat_list_taps` | The recipe packs the person added: repository, the exact commit in use, whether shell commands are allowed. Adding or updating a pack stays with the person |
+| `ripeat_list_taps` | The recipe packs the person added: GitHub repository and commit or HTTPS address and index SHA-256, and whether shell commands are allowed. Adding or updating a pack stays with the person |
 | `ripeat_resolve` | For these names: is there a recipe, is it installed, what does it depend on, what would be used, is it blocked? A name with no recipe comes back with the next step |
 | `ripeat_find` | Where could an unknown tool come from (package managers, GitHub)? Looks only; descriptions are cleaned and treated as data |
 | `ripeat_rules` | What does the administrator allow? ([Administrator policy](./admin-policy)) |
@@ -83,12 +83,13 @@ Each does one job. All are read-only except `ripeat_save_profile` and `ripeat_dr
 | `ripeat_save_profile` | Keep a profile under a name. Checked first; refuses to replace one unless told to. Writes only that file |
 | `ripeat_draft_recipe` | For a tool with no recipe: ripeat drafts the recipe itself from a package manager or GitHub release and saves it as a **draft** that does nothing until you approve it ([Drafts from an assistant](./drafts)). Takes a name and an optional source, never recipe text |
 | `ripeat_list_drafts`, `ripeat_get_draft` | The drafts waiting for your approval |
+| `ripeat_preview_uninstall`, `ripeat_preview_upgrade`, `ripeat_preview_rollback` | Preview those CLI actions without changing anything. Uninstall refuses tools still required by other managed tools; upgrade checks the configured package managers |
 | `ripeat_run_install`, `ripeat_run_rollback` | **Only with `--allow-run`.** Install tools, or undo the assistant's last install, after you confirm in your app. Refuse a HIGH-risk plan and any step that needs administrator rights ([below](#letting-the-assistant-install-ripeat-mcp---allow-run-off-by-default)) |
 
 A call with a wrong or missing argument name is answered with the arguments the tool takes (for example "`ripeat_find` has no argument `query`. It takes: `include_github`, `name`"), so an assistant can fix its call in one step.
 
 `ripeat_plan` and `ripeat_assess` take tool names, saved profile names, or profile text, in any mix. They resolve the
-plan the way `ripeat plan` does (fallbacks, dependencies, the administrator policy), but they ignore `ripeat.lock`,
+plan the way `ripeat plan` does (fallbacks, dependencies, the administrator policy), and accept an optional `scope` of `user` or `system`. The run install tool accepts the same scope. They ignore `ripeat.lock`,
 because the folder the assistant runs in is unknown.
 
 A tool that is already on the machine comes back with no method and no risk level: ripeat does not know how it got there
@@ -159,8 +160,7 @@ in some. The tools and that built-in guidance are enough on their own.
 
 ## Safety
 
-- **Read-only by design.** No tool installs, upgrades, uninstalls or rolls back. The only write is a profile file in ripeat's
-  own folder.
+- **Plan-first by default.** Saving a profile or draft writes a file in ripeat's own folder. Only the optional run tools can install or roll back, with the limits and confirmation described above. Upgrade and uninstall are not offered as run tools.
 - **You do not have to say "don't install".** The server hands every assistant standing instructions: a request to set up,
   add, remove or update tools means "prepare the plan, show the risk, give me the command". The same boundaries are repeated
   in every prompt.
