@@ -8,10 +8,10 @@ A skill is a short instruction file (`SKILL.md`) that agent tools such as Claude
 `ripeat plan` and `ripeat assess --json`, show the risk in plain words, and **hand the person the `ripeat install` command to run themselves**. It forbids running the commands that change the machine,
 adding `--yes`, `--accept-risk` or `--allow-admin`, inventing package names or recipes, and working around a HIGH or BLOCKED rating.
 
-The [skills installer](https://github.com/vercel-labs/skills) can install it from the public documentation site. It requires Node.js and asks which agent and installation scope to use:
+The [skills installer](https://github.com/vercel-labs/skills) can install it from the public documentation repository. It requires Node.js and asks which agent and installation scope to use:
 
 ```bash
-npx skills add https://ripeat.github.io/skills/ripeat/SKILL.md --skill ripeat
+npx skills add ripeat/ripeat.github.io --skill ripeat
 ```
 
 Alternatively, save [the file](https://ripeat.github.io/skills/ripeat/SKILL.md) as `~/.claude/skills/ripeat/SKILL.md` (Claude Code; other agent tools have their own skills folder):

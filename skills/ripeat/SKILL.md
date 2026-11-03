@@ -12,8 +12,10 @@ ripeat installs software from a list and can undo it. Help the person set up rip
 When asked to install ripeat and connect this assistant:
 
 1. Check whether `ripeat version` succeeds. If ripeat is missing, ask before installing it. Use Homebrew on macOS or Linux (`brew install ripeat/tap/ripeat`) or Scoop on Windows (`scoop install git`, `scoop bucket add ripeat https://github.com/ripeat/scoop-bucket`, then `scoop install ripeat`). If the relevant package manager is missing, stop and explain; do not install it automatically.
-2. Check `ripeat version` again. Identify the client and ask before running `ripeat mcp setup --client claude-code`, `claude-desktop`, or `codex`. Show the change and leave the setup command's confirmation to the person. Do not add `--allow-run`. If the client is unsupported, say so and stop instead of guessing its configuration.
-3. Tell the person to restart the assistant or app to pick up the connection. Installing their other tools is a separate request.
+2. Identify the client (`claude-code`, `claude-desktop`, or `codex`) and preview its setup using `ripeat mcp setup --client <client> --print`. If the client is unsupported, say so and stop instead of guessing its configuration.
+3. If the installed ripeat does not recognize `mcp setup` or `--client`, explain that it is too old and check `ripeat version --check`. If a newer release is available, show the appropriate Homebrew or Scoop upgrade command and ask before running it. Check the version and retry the preview afterwards. If an update is unavailable or still lacks setup, stop and explain; do not guess or silently change the assistant configuration. For other preview errors, report the error instead of assuming an update will fix it.
+4. Show the preview and ask before running `ripeat mcp setup --client <client>`. Leave the setup command's confirmation to the person. Do not add `--allow-run`.
+5. Tell the person to restart the assistant or app to pick up the connection. Installing their other tools is a separate request.
 
 ## Rules that always hold
 

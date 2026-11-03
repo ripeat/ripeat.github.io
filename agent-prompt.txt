@@ -1,1 +1,1 @@
-Install the ripeat skill with `npx skills add https://ripeat.github.io/skills/ripeat/SKILL.md --skill ripeat`, then follow it to install ripeat and connect this assistant. Ask me before making changes.
+Install the ripeat skill with `npx skills add ripeat/ripeat.github.io --skill ripeat`, then follow it to install ripeat and connect this assistant. Ask me before making changes.
