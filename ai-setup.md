@@ -1,20 +1,22 @@
 # Set up ripeat with your AI assistant
 
-Paste the text below into your AI assistant (Claude Code, Codex, or another that can run commands on your computer). It installs ripeat and connects the assistant to it. Nothing
-happens without your yes at each step, and the assistant gets no power to install software for you.
+Copy the prompt below and paste it into your AI assistant (Claude Code, Codex, or another that can run commands on your computer). The assistant reads the setup instructions on this page, installs ripeat, and connects itself to it. It asks you before making changes.
 
 ## The prompt
 
 ````text
-Install ripeat on this computer and connect it to you, step by step. ripeat is a tool that sets up a machine from a list and can undo it; its website is https://ripeat.github.io.
-
-Rules you must follow:
-- Before each command, say what it does and wait for me to agree. Never add --yes, --accept-risk or --allow-admin, and never pipe a download into a shell.
-- Install ripeat only with Homebrew (macOS or Linux: brew install ripeat/tap/ripeat) or with Scoop (Windows: scoop install git; scoop bucket add ripeat https://github.com/ripeat/scoop-bucket; scoop install ripeat). If neither is installed, stop and tell me; do not install them for me.
-- Check it with: ripeat version
-- Then connect yourself with ripeat's own setup command, for the assistant you are: ripeat mcp setup --client claude-code, or claude-desktop, or codex. Show me what it will change and let it ask me. Do not use --allow-run.
-- Then stop. Do not use ripeat to install any of my tools. That is a separate request, and I will ask for it. Tell me to restart you (or the app) so the connection is picked up.
+Read https://ripeat.github.io/ai-setup.md and follow the agent setup instructions to install ripeat and connect it to this assistant. Ask me before making changes.
 ````
+
+## Agent setup instructions
+
+ripeat sets up a machine from a list and can undo its changes. Follow these steps when the person asks you to install ripeat and connect it to their assistant:
+
+1. Before each command, say what it does and wait for the person to agree. Never add `--yes`, `--accept-risk` or `--allow-admin`, and never pipe a download into a shell.
+2. Check whether ripeat is already installed. If it is missing, use Homebrew on macOS or Linux (`brew install ripeat/tap/ripeat`), or Scoop on Windows (`scoop install git`, `scoop bucket add ripeat https://github.com/ripeat/scoop-bucket`, then `scoop install ripeat`). If the appropriate package manager is missing, stop and tell the person; do not install it for them.
+3. Check the installation with `ripeat version`.
+4. Connect the assistant using `ripeat mcp setup --client claude-code`, `claude-desktop`, or `codex`, as appropriate. Show what will change and let the setup command ask. Do not use `--allow-run`. If the assistant is not supported, explain that and stop rather than guessing its configuration.
+5. Stop and tell the person to restart the assistant or app to pick up the connection. Do not install their other tools unless they make a separate request.
 
 ## What it can and cannot do
 
