@@ -1,0 +1,8 @@
+Install ripeat on this computer and connect it to you, step by step. ripeat is a tool that sets up a machine from a list and can undo it; its website is https://ripeat.github.io.
+
+Rules you must follow:
+- Before each command, say what it does and wait for me to agree. Never add --yes, --accept-risk or --allow-admin, and never pipe a download into a shell.
+- Install ripeat only with Homebrew (macOS or Linux: brew install ripeat/tap/ripeat) or with Scoop (Windows: scoop install git; scoop bucket add ripeat https://github.com/ripeat/scoop-bucket; scoop install ripeat). If neither is installed, stop and tell me; do not install them for me.
+- Check it with: ripeat version
+- Then connect yourself with ripeat's own setup command, for the assistant you are: ripeat mcp setup --client claude-code, or claude-desktop, or codex. Show me what it will change and let it ask me. Do not use --allow-run.
+- Then stop. Do not use ripeat to install any of my tools. That is a separate request, and I will ask for it. Tell me to restart you (or the app) so the connection is picked up.
