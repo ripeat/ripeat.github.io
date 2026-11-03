@@ -151,7 +151,7 @@ block, with the steps and the rules, so the result is consistent.
 ## Resources
 
 Reference material the assistant can read: the JSON Schemas (`ripeat://schema/recipe`, `profile`, `policy`,
-`admin-policy`), ripeat's own documentation pages (`ripeat://docs/<page>`, built into the program so they work offline),
+`admin-policy`), selected ripeat documentation pages (`ripeat://docs/<page>`, built into the program so they work offline),
 worked examples (`ripeat://examples/profile`, `ripeat://examples/recipe`), the administrator rules (`ripeat://rules`),
 and any recipe or saved profile by name (`ripeat://recipes/<name>`, `ripeat://profiles/<name>`).
 

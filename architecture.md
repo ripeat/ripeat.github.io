@@ -7,8 +7,7 @@ page that covers it in detail.
 
 You keep a **list** of tools you want. ripeat looks each name up in its **recipes** (the "how" for each system), turns the list into an ordered **plan**,
 **rates the risk** of that plan with plain rules, shows you both, and asks. Only then does it change the machine, writing a **journal** first, so any run
-can be **undone**. Nothing in that chain is an AI's guess: the plan, the rating and the lookups are fixed rules, so the same input gives the same answer. An AI assistant can
-be connected, but it only ever prepares and explains; you stay the one who says yes.
+can be **undone** where possible. The plan, the rating and the lookups use fixed rules. An AI assistant can prepare and explain a plan; if you enable the optional run tools, it can also request an install or rollback for you to confirm.
 
 ## The pipeline
 
@@ -45,7 +44,7 @@ Every command is some part of this line. `plan` and `assess` stop before the eng
 6. **Takes the lock and writes the journal entry** for the run before anything changes.
 7. **Runs each step.** A tool ripeat already manages is skipped; a tool already on the machine is recorded and **left alone**; anything else is installed through its backend
    and recorded as it goes.
-8. **If a step fails,** ripeat says why it probably failed and undoes the whole run, newest step first. **If a step needs a restart,** the run pauses and `ripeat resume` carries on.
+8. **If a step fails,** ripeat says why it probably failed and attempts to undo the run, newest step first. It reports anything it could not undo; `--no-rollback` disables automatic rollback. **If a step needs a restart,** the run pauses and `ripeat resume` carries on.
 9. **Finishes** with the run marked complete. `ripeat rollback` can undo it later.
 
 ## Where ripeat keeps its files
@@ -68,12 +67,12 @@ The administrator policy lives in a system folder only an administrator can writ
 
 ## The guarantees
 
-- **Nothing changes without a plan you saw and a yes you gave.** Looking is free: `plan`, `assess`, `find`, `list`, `validate` and `recipes check` change nothing.
+- **Install runs show a plan and ask before acting.** `--yes` answers the ordinary confirmation for scripts; HIGH-risk plans have a separate gate. Looking is free: `plan`, `assess`, `find`, `list`, `validate` and `recipes check` change nothing.
 - **ripeat never removes what it did not install.** A tool that was on the machine first is recorded as such, and left alone by `uninstall` and `rollback`.
-- **Every run is journaled before it acts,** so a crash or a failure can be undone from the journal.
+- **Every run is journaled before it acts,** so a crash or a failure can be rolled back from the journal. Rollback is best effort and reports anything it cannot undo.
 - **One writer at a time.** A second ripeat that would change things stops at once and says so.
-- **Downloads are verified.** A downloaded program or installer must match a SHA-256, and a vendor installer must also carry a valid vendor signature.
-- **No model decides anything.** Plans, ratings, lookups and drafts come from fixed rules; an AI assistant only asks for them and explains them.
+- **Downloads are verified.** A downloaded program or installer must match a SHA-256. A vendor installer must also carry a valid signature unless its recipe explicitly allows an unsigned file, which is rated HIGH.
+- **Plans and risk ratings use fixed rules.** An assistant can request and explain them, and with the optional run tools can request a confirmed install or rollback.
 
 ## Where to go next
 
