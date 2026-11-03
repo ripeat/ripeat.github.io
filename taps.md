@@ -71,7 +71,7 @@ already added.
   built-in recipe's name (so a pack cannot swap in its own `git`), and your own recipe with the same name wins over a pack's. If two packs carry the
   same name, the pack that sorts first by name keeps it, and `ripeat tap` lists the other as not loaded.
 - **Rated as strictly as your own.** A recipe from a pack counts as one you added: a download, an installer or a shell command in it is rated
-  accordingly ([Risk and `assess`](./assess)), and the reason names the pack. `ripeat recipes` shows its origin as `tap:<name>`.
+  accordingly ([Risk and `assess`](./assess)), and the reason names the pack. `ripeat recipes check` shows its origin as `tap:<name>`.
 - **Checked again every time it loads.** The shell and unsigned rules are applied when the recipes are loaded, not only when the pack is added, so a
   file dropped into the pack's folder by hand is not loaded either.
 

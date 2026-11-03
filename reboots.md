@@ -32,6 +32,7 @@ Carries on the paused install with the same tools, versions and `--scope`
 (and `ripeat.lock`, if present). Steps that already happened are skipped, because
 they are managed by now.
 
+- While a run is paused and the restart has not happened, a new `ripeat install` is refused too (it would run the steps that are waiting for the restart). Restart, then `ripeat resume`.
 - If a restart is still pending, resume refuses and keeps the pause. `--force`
   carries on anyway.
 - If you already said yes to the plan's HIGH risk ([Risk and `assess`](./assess)) before the pause, resume does not ask again.
