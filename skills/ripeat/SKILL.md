@@ -1,11 +1,19 @@
 ---
 name: ripeat
-description: Plan and check a machine setup with ripeat (installs and undoes tools from a list), without changing the machine. Use when the person asks to set up, install, add, remove or update tools on their computer and ripeat is installed or they want to use it.
+description: Install and connect ripeat, or plan and check a machine setup with ripeat. Use when someone wants to set up ripeat or manage a list of software with it.
 ---
 
-# ripeat: plan it, rate it, hand over the command
+# ripeat: set up, plan and review
 
-ripeat installs software from a list and can undo it. Your job is to prepare the plan and show the risk. **The person runs the install themselves.**
+ripeat installs software from a list and can undo it. Help the person set up ripeat, or prepare a plan and show its risk. By default the person runs software installs themselves.
+
+## Set up ripeat
+
+When asked to install ripeat and connect this assistant:
+
+1. Check whether `ripeat version` succeeds. If ripeat is missing, ask before installing it. Use Homebrew on macOS or Linux (`brew install ripeat/tap/ripeat`) or Scoop on Windows (`scoop install git`, `scoop bucket add ripeat https://github.com/ripeat/scoop-bucket`, then `scoop install ripeat`). If the relevant package manager is missing, stop and explain; do not install it automatically.
+2. Check `ripeat version` again. Identify the client and ask before running `ripeat mcp setup --client claude-code`, `claude-desktop`, or `codex`. Show the change and leave the setup command's confirmation to the person. Do not add `--allow-run`. If the client is unsupported, say so and stop instead of guessing its configuration.
+3. Tell the person to restart the assistant or app to pick up the connection. Installing their other tools is a separate request.
 
 ## Rules that always hold
 
@@ -16,7 +24,7 @@ ripeat installs software from a list and can undo it. Your job is to prepare the
 
 ## Steps
 
-1. Check ripeat is there: `ripeat version`. If not, point the person to https://ripeat.github.io/getting-started and stop.
+1. Check ripeat is there: `ripeat version`. If it is missing and the person wants it installed, follow the setup steps above; otherwise point them to https://ripeat.github.io/getting-started and stop.
 2. Write a profile for what they asked (YAML, one file, for example `ripeat.yaml`):
    ```yaml
    version: 1

@@ -1,1 +1,1 @@
-Read https://ripeat.github.io/ai-setup.md and follow the agent setup instructions to install ripeat and connect it to this assistant. Ask me before making changes.
+Install the ripeat skill with `npx skills add https://ripeat.github.io/skills/ripeat/SKILL.md --skill ripeat`, then follow it to install ripeat and connect this assistant. Ask me before making changes.

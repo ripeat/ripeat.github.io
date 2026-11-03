@@ -1,22 +1,14 @@
 # Set up ripeat with your AI assistant
 
-Copy the prompt below and paste it into your AI assistant (Claude Code, Codex, or another that can run commands on your computer). The assistant reads the setup instructions on this page, installs ripeat, and connects itself to it. It asks you before making changes.
+Copy the prompt below and paste it into your AI assistant (Claude Code, Codex, or another that can run commands on your computer). The assistant installs the ripeat skill, then follows it to install ripeat and connect itself. It asks you before changing the machine.
 
 ## The prompt
 
 ````text
-Read https://ripeat.github.io/ai-setup.md and follow the agent setup instructions to install ripeat and connect it to this assistant. Ask me before making changes.
+Install the ripeat skill with `npx skills add https://ripeat.github.io/skills/ripeat/SKILL.md --skill ripeat`, then follow it to install ripeat and connect this assistant. Ask me before making changes.
 ````
 
-## Agent setup instructions
-
-ripeat sets up a machine from a list and can undo its changes. Follow these steps when the person asks you to install ripeat and connect it to their assistant:
-
-1. Before each command, say what it does and wait for the person to agree. Never add `--yes`, `--accept-risk` or `--allow-admin`, and never pipe a download into a shell.
-2. Check whether ripeat is already installed. If it is missing, use Homebrew on macOS or Linux (`brew install ripeat/tap/ripeat`), or Scoop on Windows (`scoop install git`, `scoop bucket add ripeat https://github.com/ripeat/scoop-bucket`, then `scoop install ripeat`). If the appropriate package manager is missing, stop and tell the person; do not install it for them.
-3. Check the installation with `ripeat version`.
-4. Connect the assistant using `ripeat mcp setup --client claude-code`, `claude-desktop`, or `codex`, as appropriate. Show what will change and let the setup command ask. Do not use `--allow-run`. If the assistant is not supported, explain that and stop rather than guessing its configuration.
-5. Stop and tell the person to restart the assistant or app to pick up the connection. Do not install their other tools unless they make a separate request.
+The skills installer needs Node.js. It asks where to install the skill; if Node.js or the installer is unavailable, use [the manual skill instructions](./agent-skill). The setup command supports Claude Code, Claude Desktop and Codex; the skill stops with an explanation for other clients rather than guessing their configuration.
 
 ## What it can and cannot do
 
