@@ -70,6 +70,8 @@ Each does one job. All are read-only except `ripeat_save_profile` and `ripeat_dr
 | `ripeat_get_recipe` | What does one recipe look like? |
 | `ripeat_list_installed` | What does ripeat manage here, at which versions, and what depends on it? A tool that was on the machine before ripeat comes back with no method and a note that how it was installed is unknown |
 | `ripeat_outdated` | Do the managed tools have a newer version? Asks `apt`, `dnf`, `pacman` and Homebrew; upgrading stays with the person (`ripeat upgrade`) |
+| `ripeat_version_check` | Compare this server's version with the latest GitHub release; nothing is upgraded |
+| `ripeat_check_recipes` | Check up to 30 named recipes against their sources, as `ripeat recipes check` does; skipped options are reported |
 | `ripeat_history` | The latest 30 runs (id, command, time, status, steps), to explain what `ripeat rollback` would undo |
 | `ripeat_list_taps` | The recipe packs the person added: GitHub repository and commit or HTTPS address and index SHA-256, and whether shell commands are allowed. Adding or updating a pack stays with the person |
 | `ripeat_resolve` | For these names: is there a recipe, is it installed, what does it depend on, what would be used, is it blocked? A name with no recipe comes back with the next step |
@@ -89,8 +91,7 @@ Each does one job. All are read-only except `ripeat_save_profile` and `ripeat_dr
 A call with a wrong or missing argument name is answered with the arguments the tool takes (for example "`ripeat_find` has no argument `query`. It takes: `include_github`, `name`"), so an assistant can fix its call in one step.
 
 `ripeat_plan` and `ripeat_assess` take tool names, saved profile names, or profile text, in any mix. They resolve the
-plan the way `ripeat plan` does (fallbacks, dependencies, the administrator policy), and accept an optional `scope` of `user` or `system`. The run install tool accepts the same scope. They ignore `ripeat.lock`,
-because the folder the assistant runs in is unknown.
+plan the way `ripeat plan` does (fallbacks, dependencies, the administrator policy), and accept an optional `scope` of `user` or `system`. They also accept `lockfile` containing the text of `ripeat.lock`; no file is read automatically because the assistant's working folder is unknown. Supply the same lockfile and scope to `ripeat_plan`, `ripeat_assess`, and `ripeat_run_install` so they agree. The same lockfile rules and limitations as the CLI apply ([The lockfile](./lockfile)).
 
 A tool that is already on the machine comes back with no method and no risk level: ripeat does not know how it got there
 (it may come from a version manager, not the package manager the recipe uses) and will not change it. `ripeat_status` says
