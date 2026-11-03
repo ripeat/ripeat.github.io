@@ -49,6 +49,7 @@ ripeat plan --profile web                         # preview, as usual
 ripeat assess --profile web                       # rate its risk ([Risk and `assess`](./assess))
 ```
 
+- **Finding your next step:** `ripeat profile list` shows saved profiles and their tools. After saving one, ripeat suggests assessing it before installation. `ripeat profile show` and export without a file still print the original YAML.
 - **Where:** `$RIPEAT_HOME/profiles/<name>.yaml`, in exactly the format above, so you can also edit them by hand.
 - **Names:** lower-case letters, digits, `.` `_` `-`, up to 64 characters; never a path.
 - **Saving checks the file** (the same rules as above) and refuses to replace an existing profile unless you add `--force`.

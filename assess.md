@@ -18,14 +18,19 @@ policy, `--scope`). It assesses requested tools independently so it can report a
 ## What a report shows
 
 ```
-Risk: MEDIUM   1 to install · 2 already managed · 1 left alone
+Assessment: Review the planned changes
+Risk: MEDIUM   1 to install · 1 already managed · 1 left alone
 
-  RISK      TOOL     HOW             WHY
-  -         git      already managed by ripeat, skipped
-  MEDIUM    ripgrep  github_release  requested
-                     - downloads a program from a third party: its SHA-256 is
-                       verified, but ripeat cannot vouch for the project itself
-  -         docker   already on this machine, left alone
+Planned changes (1):
+  ripgrep — MEDIUM risk · GitHub release
+    - downloads a program from a third party: its SHA-256 is verified,
+      but ripeat cannot vouch for the project itself
+
+Already managed by ripeat (1):
+  git
+
+Already on this machine (1):
+  docker
 
 What would run, without administrator rights:
   download the latest BurntSushi/ripgrep release ...
@@ -33,12 +38,14 @@ What would run, without administrator rights:
 Can it be undone? Yes: `ripeat rollback` removes what this run installs
 ```
 
-The first line is the whole story: the level, then how many tools would be installed, are already managed, are left alone, or are **for you to install by hand**
-(a `manual` recipe whose tool is missing: shown as "by hand", with its note, no risk level, and `"status": "manual"` in `--json`; a tool that needs one is reported as blocked). Long reasons are wrapped under the tool. On a terminal the levels are coloured (green LOW, yellow MEDIUM,
+The example is illustrative; counts and tools in an actual report reflect the request.
+
+The opening summary gives the overall level and how many tools would be installed, are already managed, are left alone, or are **for you to install by hand**
+(a `manual` recipe whose tool is missing: shown as "by hand", with its note, no risk level, and `"status": "manual"` in `--json`; a tool that needs one is reported as blocked). Tools are grouped by status, with reasons and dependency information beneath each tool. On a terminal the levels are coloured (green LOW, yellow MEDIUM,
 red HIGH and BLOCKED); in a pipe, in a file, for an AI assistant, with `--json`, or when the `NO_COLOR` variable is set,
 the text is plain.
 
-If any requested tool is blocked, the report says the full request cannot be installed yet. Other tools are assessed individually and their commands are previews, not a promise that the complete plan can run. Resolve the listed reasons, then assess the profile again; undo information applies only if the available steps are later installed.
+If any requested tool is blocked, the report says the full request cannot be installed yet, lists those items under “Needs attention”, and prompts you to resolve them and assess again. Other tools are assessed individually and their commands are previews, not a promise that the complete plan can run. Resolve the listed reasons, then assess the profile again; undo information applies only if the available steps are later installed.
 
 - **Risk:** the highest level among the steps that would run: LOW, MEDIUM, HIGH, or BLOCKED.
 - **Each tool:** its level (`none` for a tool that is left alone, since there is nothing to rate), install method, why it is in the plan (requested, or a dependency of another tool),
@@ -86,7 +93,7 @@ Why it is shaped like this:
 
 ## What ripeat does with the level
 
-- **`ripeat install`** prints a short "Risk:" summary with the reasons, then:
+- **`ripeat install`** prints a short "Risk:" summary with up to six reasons; assess the same request for the full report. Then:
   - LOW and MEDIUM go to the normal question, "Install N tools as shown above?" ([Install, uninstall, rollback](./install-and-rollback)).
   - **HIGH** runs only if you say so. In a terminal ripeat shows the reasons and asks `[y/N]`. Without a
     terminal (a script, or an AI client) it refuses unless you pass `--accept-risk`. Nothing is changed when it
