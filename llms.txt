@@ -29,6 +29,7 @@ An assistant should prepare the plan and hand the person the command to run; it 
 - [Downloads (GitHub, URL)](https://ripeat.github.io/downloads.md)
 - [Vendor installers](https://ripeat.github.io/installers.md)
 - [Recipe packs (taps)](https://ripeat.github.io/taps.md)
+- [Bundles: profile + recipes](https://ripeat.github.io/bundles.md)
 - [Drafts from an assistant](https://ripeat.github.io/drafts.md)
 - [Checking your files](https://ripeat.github.io/validate.md)
 

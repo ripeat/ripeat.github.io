@@ -68,6 +68,7 @@ ripeat profile import https://example.com/team/backend.yaml          # or from a
 ripeat profile import https://example.com/ripeat.yaml backend        # a generic file name needs a name
 ```
 
+- **Need to share recipes too?** Use a [bundle](./bundles).
 - **A profile carries no commands.** It names tools and versions, nothing else, so importing one runs nothing and installs
   nothing. What it would do on your machine is decided by your own recipes, the plan, the risk rating and the confirmation
   question, exactly as for a profile you wrote yourself. Still run `ripeat assess --profile <name>` before installing a profile
