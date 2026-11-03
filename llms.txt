@@ -2,7 +2,7 @@
 
 > ripeat sets up a machine from a list of tools and can undo it safely (macOS, Linux, Windows). It shows the plan and its risk, asks before it changes anything, and keeps a journal so every run can be rolled back.
 
-An assistant should prepare the plan and hand the person the command to run; it should not run `ripeat install` or add `--yes`. Start with the skill, or connect ripeat as an MCP server with `ripeat mcp setup`.
+The ripeat skill guides installation and assistant setup with the person’s agreement. For software installs, an assistant should prepare the plan and hand the person the command to run; it should not run `ripeat install` or add `--yes`. Connect ripeat as an MCP server with `ripeat mcp setup`.
 
 - [Agent skill (SKILL.md)](https://ripeat.github.io/skills/ripeat/SKILL.md): the safe flow for an agent with a shell
 
