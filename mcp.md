@@ -17,7 +17,7 @@ ripeat mcp setup                          # lists the assistants it knows
 ripeat mcp setup --client claude-code     # or claude-desktop, or codex
 ```
 
-It uses the full path to ripeat (a path in Homebrew's `bin` is kept, so it survives an upgrade), carries `RIPEAT_HOME` over when it is set in your shell, shows exactly what it will change and asks first.
+It uses the full path to ripeat (a path in Homebrew's `bin` is kept, so it survives an upgrade), carries `RIPEAT_HOME` over when it is set in your shell, shows exactly what it will change and asks first (for Claude Desktop's JSON file it shows the new entry and says the rest keeps its value, since the file is rewritten with sorted keys).
 `--print` shows the change without making it, `--yes` skips the question, and `--allow-run` also lets the assistant install ([below](#letting-the-assistant-install-ripeat-mcp---allow-run-off-by-default)).
 What it does for each assistant:
 
@@ -25,7 +25,7 @@ What it does for each assistant:
 |---|---|
 | `claude-code` | Runs `claude mcp add ripeat --scope user -- <path> mcp` after you say yes (the name goes before the options, which `claude mcp add` requires). If a server named `ripeat` exists, it says so and changes nothing |
 | `claude-desktop` | Adds `ripeat` under `mcpServers` in Claude Desktop's config file (macOS `~/Library/Application Support/Claude/claude_desktop_config.json`, Windows `%APPDATA%\Claude\...`, Linux `~/.config/Claude/...`). Other settings are kept; the file is rewritten with its keys sorted. A file that is not valid JSON is left alone |
-| `codex` | Appends a `[mcp_servers.ripeat]` block to `~/.codex/config.toml` (or `$CODEX_HOME/config.toml`) without touching the rest. If the block exists, it changes nothing |
+| `codex` | Appends a `[mcp_servers.ripeat]` block to `~/.codex/config.toml`, which the Codex command-line tool and IDE extension read (a hosted Codex with its own connectors does not use this file) (or `$CODEX_HOME/config.toml`) without touching the rest. If the block exists, it changes nothing |
 
 Any file it edits is first copied to `<file>.ripeat-<time>.bak`. To undo, restore that copy (or run `claude mcp remove ripeat` / `codex mcp remove ripeat`). Running it again when ripeat is already set up changes nothing.
 Restart the assistant afterwards. By hand, the same thing is:

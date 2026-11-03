@@ -5,7 +5,7 @@ Two files help an AI agent use ripeat safely when it only has a shell, or when i
 ## The skill
 
 A skill is a short instruction file (`SKILL.md`) that agent tools such as Claude Code load on demand. ripeat's skill can guide an agent through installing ripeat and connecting a supported assistant with your agreement. It also teaches the safe flow: write a profile, check it with `ripeat validate`, preview it with
-`ripeat plan` and `ripeat assess --json`, show the risk in plain words, and **hand the person the `ripeat install` command to run themselves**. It forbids running the commands that change the machine,
+`ripeat plan` and `ripeat assess --json`, show the risk in plain words, and **hand the person the `ripeat install` command to run themselves**. The one thing it hands back is the setup confirmation: `ripeat mcp setup` asks "Run it now?", which needs a person at a terminal, so the agent gives the command to run in a separate terminal window. It forbids running the commands that change the machine,
 adding `--yes`, `--accept-risk` or `--allow-admin`, inventing package names or recipes, and working around a HIGH or BLOCKED rating.
 
 The [skills installer](https://github.com/vercel-labs/skills) can install it from the public documentation repository. It requires Node.js and asks which agent and installation scope to use:

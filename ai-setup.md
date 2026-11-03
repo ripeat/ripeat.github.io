@@ -5,7 +5,7 @@ Copy the prompt below and paste it into your AI assistant (Claude Code, Codex, o
 ## The prompt
 
 ````text
-Install the ripeat skill with `npx skills add ripeat/ripeat.github.io --skill ripeat`, then follow it to install ripeat and connect this assistant. Ask me before making changes.
+Install the ripeat skill with `npx skills add ripeat/ripeat.github.io --skill ripeat`, then follow it to install ripeat and connect this assistant. If `npx` is not available, do not install Node.js: read the whole of https://ripeat.github.io/skills/ripeat/SKILL.md with a shell command such as curl, not a tool that summarizes it, and follow that. Ask me before making changes.
 ````
 
 The skills installer needs Node.js. It asks where to install the skill; if Node.js or the installer is unavailable, use [the manual skill instructions](./agent-skill). The setup command supports Claude Code, Claude Desktop and Codex; the skill stops with an explanation for other clients rather than guessing their configuration. An older ripeat may need an update before it can connect the assistant.
