@@ -78,6 +78,7 @@ is there, not that installing it will succeed.
 | `package` | package managers; downloads | Package name or id. Several names separated by spaces install together (`nodejs npm`). For downloads it is the app's folder name |
 | `scope` | all | `user` (needs no admin rights) or `system` (the default). See [Admin rights](./privileges) |
 | `source` | `winget` | The catalog: `winget` (the default, the community one) or `msstore` (the Microsoft Store). The `package` is then the Store id (`9NT1R1C2HH7J`) |
+| `classic` | `snap` | `true` installs a classic-confinement snap with `--classic`; this needs system scope and is rated HIGH because it has broad system access |
 | `url` | `deb_url`, `url` | Download address. `{os}`, `{arch}`, `{arch_gnu}` are replaced |
 | `install`, `uninstall` | `shell` | Commands run through the platform shell |
 | `repo`, `asset`, `checksum_asset`, `bins` | `github_release` | See [Downloads (GitHub, URL)](./downloads) |
@@ -92,7 +93,7 @@ is there, not that installing it will succeed.
 | `apt` | `apt-get install` | yes, `pkg=version` | yes |
 | `dnf` | `dnf install` | yes, `pkg-version` | yes |
 | `pacman` | `pacman -S`; removal uses `-Rs` so helper packages go too | no, warns | yes |
-| `snap` | `snap install` | no, warns | yes |
+| `snap` | `snap install`; add `--classic` only when `classic: true` | no, warns | yes |
 | `brew` | `brew install --formula`; the current version only (an older one needs its own formula, such as `node@20`, in `package`) | no, warns | no: Homebrew refuses to run as root |
 | `brew_cask` | `brew install --cask` (apps) | no, warns | no; an app's own installer may ask for your password |
 | `flatpak` | `flatpak install` from Flathub; `--user` when `scope: user` | no, warns | unless `scope: user` |

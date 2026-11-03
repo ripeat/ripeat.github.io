@@ -39,6 +39,7 @@ Unknown keys (a typo such as `pakage:` or `tool:`) and invalid YAML.
 | unknown install method | `deb_url` (not checksum-verified) |
 | a key the method requires is missing (`package`; `url`, `install`, `repo`, `asset`, `bins`, `sha256` per method) | a URL using plain `http` |
 | `scope` other than `user` or `system`; `source` other than `winget` or `msstore` | a key the method does not use |
+| `classic: true` on a method other than `snap`, or on a user-scope snap | |
 | `requires` a tool that has no recipe, or a dependency cycle | `github_release` without `checksum_asset` |
 | `repo` not `owner/name`; `asset` not a valid regular expression; unknown `{placeholder}`; `sha256` not 64 hex characters | |
 | `product` that is blank, longer than 80 characters or on several lines | `product` on a dmg (it is only read on Windows) |

@@ -31,8 +31,7 @@ as blocked, and GitHub projects that cannot be used are listed with the reason.
   `source: msstore` ([Recipes](./recipes)). The community catalog is listed first, so it wins when both have the name.
 - **`scoop`** searches the buckets you have added. An app outside the default `main` bucket is named `bucket/app`
   (`extras/firefox`); scoop cannot install it unless that bucket is added, which is why only buckets you have added are searched.
-- **`snap`:** a snap that needs "classic" confinement (VS Code is one) is listed as not usable, because ripeat installs
-  with plain `snap install`, which refuses it.
+- **`snap`:** a stable release that needs classic confinement is marked as such and drafted with `classic: true`. Classic snaps have broad system access; the plan rates them HIGH and requires separate confirmation ([Risk and `assess`](./assess)).
 - On GitHub, a plain name must match a repository name exactly (most starred first, at most
   three tried); `owner/repo` goes straight to that project.
 - A GitHub project is a candidate only if its latest release has a file for this OS and CPU

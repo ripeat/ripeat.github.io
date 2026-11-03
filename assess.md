@@ -38,6 +38,8 @@ The first line is the whole story: the level, then how many tools would be insta
 red HIGH and BLOCKED); in a pipe, in a file, for an AI assistant, with `--json`, or when the `NO_COLOR` variable is set,
 the text is plain.
 
+If any requested tool is blocked, the report says the full request cannot be installed yet. Other tools are assessed individually and their commands are previews, not a promise that the complete plan can run. Resolve the listed reasons, then assess the profile again; undo information applies only if the available steps are later installed.
+
 - **Risk:** the highest level among the steps that would run: LOW, MEDIUM, HIGH, or BLOCKED.
 - **Each tool:** its level (`none` for a tool that is left alone, since there is nothing to rate), install method, why it is in the plan (requested, or a dependency of another tool),
   and the reasons for its level. Tools already installed are listed as left alone and add no risk.
@@ -58,6 +60,7 @@ Each step gets the highest level that applies, and the plan gets the highest of 
 | Fact about the step | Level |
 |---|---|
 | Forbidden by the administrator policy, no recipe, or install method unavailable here | **BLOCKED** (cannot run) |
+| A classic-confinement snap (`classic: true`), which has broad system access | **HIGH** |
 | A `shell` command in a recipe **you added** (including an approved draft) | **HIGH** |
 | A download ripeat cannot verify (`deb_url`, no checksum) in a recipe **you added** | **HIGH** |
 | An `installer` that is a `.pkg`, `.msi` or `.exe` (runs the vendor's installer as administrator), or any installer with `unsigned: true` | **HIGH** |
