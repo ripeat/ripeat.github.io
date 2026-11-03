@@ -1,6 +1,6 @@
 # Command reference
 
-Every ripeat command, what it changes, and its options. `ripeat` with no arguments prints the list. Commands that change your machine **show what they will do and ask first**;
+Every ripeat command, what it changes, and its options. `ripeat` with no arguments prints a grouped list. Use `ripeat help install` or `ripeat install --help` for command-specific help; `ripeat help mcp setup` explains assistant setup. Help does not change configuration or contact the network. Commands that change your machine **show what they will do and ask first**;
 `--yes` (or `-y`) answers for you, and is required when there is no terminal to ask in.
 
 ## Look first: these change nothing
