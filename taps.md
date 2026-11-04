@@ -35,7 +35,7 @@ recipes:
 `ripeat tap add https://example.org/pack.yaml [--sha256 hex] [--as name]` downloads it (https only, redirects to http refused, at most 512 KB, at most 200 recipes), prints its
 SHA-256, shows each recipe and asks, like any pack. The SHA-256 of the file is the pin, shown by `ripeat tap` where a commit would be. If the owner of the pack
 publishes the SHA-256, pass it as `--sha256` and the add stops when the file differs. `ripeat tap update` downloads the file again and, when its SHA-256 changed,
-shows the recipes added, changed and removed and asks. Every rule below applies unchanged; `--ref` does not apply to an address.
+shows the recipes added, changed and removed and asks. Every rule below applies unchanged; `--ref` does not apply to an address. A host that caches (GitHub's `raw.githubusercontent.com` keeps a file for about five minutes) serves the old file until the cache expires, so `ripeat tap update` says "up to date" for that long after a change; wait and run it again.
 
 ## Adding one
 
