@@ -102,7 +102,7 @@ cannot get admin rights, for example through `sudo`.
 A tool that is already installed in a different version than was asked for comes back with a `warning` (and the installed
 version), so the assistant can say plainly that, for example, node 24 is installed and node 20 will not be.
 
-Recipe packs are the person's alone: the assistant is told never to run `ripeat tap add` or `ripeat tap update` ([Recipe packs (taps)](./taps)).
+Recipe packs and bundles are the person's alone: the assistant is told never to run `ripeat tap add`, `ripeat tap update` or `ripeat bundle import` ([Recipe packs (taps)](./taps), [Bundles: profile + recipes](./bundles)).
 
 A tool that has no recipe is not created by the assistant. It finds where the tool comes from, asks ripeat to prepare a draft
 (`ripeat_draft_recipe`), and tells you to read it and run `ripeat drafts approve <name>` in a terminal, which asks you

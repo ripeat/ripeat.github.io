@@ -19,7 +19,7 @@ ripeat bundle import https://example.com/work.bundle.yaml --sha256 <hex>   # or 
 
 A bundle can hold commands (a recipe may run a shell command or download a program), so importing is treated like adding a recipe pack:
 
-- It needs a person at a terminal. There is **no `--yes`**. The administrator policy's `deny_taps` forbids it.
+- It needs a person at a terminal. There is **no `--yes`**. The administrator policy's `deny_taps` forbids it. An assistant connected through `ripeat mcp` is told never to run `ripeat bundle import`.
 - It shows the bundle's SHA-256, the tools the profile asks for, and every recipe with its install method and risk rating, rated as strictly as a recipe you wrote yourself. `--sha256 <hex>` stops the import if the file is not the one the sender published.
 - It applies the checks a pack gets: the recipe must be valid; no shell command unless you pass `--allow-shell` (read them first); no `.exe` or `.pkg` installer; no unsigned installer; `check` and `version` must be plain probes
   (a lookup of a version or a package, not a pipeline). A recipe that fails is listed with the reason and left out.
