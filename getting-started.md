@@ -16,7 +16,7 @@ scoop bucket add ripeat https://github.com/ripeat/scoop-bucket
 scoop install ripeat
 ```
 
-Check it worked: `ripeat version` prints the version, and `ripeat` with no arguments prints the command list.
+Check it worked: `ripeat version` prints the version, and `ripeat` with no arguments, in a terminal, asks what you want to do (below); in a script or a pipe it prints the command list.
 
 **Update:** `brew update && brew upgrade ripeat/tap/ripeat`, or `scoop update ripeat`. `ripeat version --check` tells you whether a newer release is out.
 
@@ -42,6 +42,25 @@ The folder is `$RIPEAT_HOME`, or `ripeat` inside your user config folder
 | `bin/` | Links to those programs. Add this folder to your `PATH` yourself; ripeat never edits your shell files |
 
 `ripeat.yaml`, `ripeat.lock` and `ripeat.policy.yaml` live in the folder you run ripeat from.
+
+## Start here: the menu
+
+Type `ripeat` in a terminal and it asks one question:
+
+```
+What would you like to do?
+  1. Create a profile: a list of tools, written in your editor
+  2. Use a saved profile (none yet)
+  3. Install tools by name
+  4. See all commands
+```
+
+- **1** asks for a name and opens your editor (`$VISUAL`, then `$EDITOR`) on a blank profile that starts with a link to [how to write one](./profiles). Leave the editor to save it; it is checked first.
+- **2** lists your saved profiles and, for the one you pick, shows its plan and risk and asks before installing anything.
+- **3** takes tool names and does the same: the plan and its risk, then the question. A name with no recipe offers to look it up.
+- **4** prints every command. An empty answer, `q`, or the end of the input leaves without doing anything.
+
+The menu only runs the ordinary commands (`profile create`, `install`), so every question, risk rating and confirmation they have still applies, and there is no way to skip them from here.
 
 ## First run
 

@@ -1,6 +1,6 @@
 # Command reference
 
-Every ripeat command, what it changes, and its options. `ripeat` with no arguments prints a grouped list. Use `ripeat help install` or `ripeat install --help` for command-specific help; `ripeat help mcp setup` explains assistant setup. Help does not change configuration or contact the network. Commands that change your machine **show what they will do and ask first**;
+Every ripeat command, what it changes, and its options. `ripeat` with no arguments, in a terminal, asks what you want to do (create a profile, use a saved one, install by name, or see all commands); without a terminal, or with `ripeat help`, it prints the grouped list. Use `ripeat help install` or `ripeat install --help` for command-specific help; `ripeat help mcp setup` explains assistant setup. Help does not change configuration or contact the network. Commands that change your machine **show what they will do and ask first**;
 `--yes` (or `-y`) answers for you, and is required when there is no terminal to ask in.
 
 ## Look first: these change nothing
@@ -40,7 +40,7 @@ Every ripeat command, what it changes, and its options. `ripeat` with no argumen
 | `ripeat add <name\|owner/repo>` | Looks a tool up, drafts a recipe, shows it, and saves it if you agree ([Install by name](./find-and-add)). `--from <method>\|github` pick the source · `--as <name>` recipe name · `--bin <program>` the program to put on PATH · `--no-github` · `--refresh` draft one you added again and show the difference · `--manual --check <cmd> --note <text>` record a tool you install by hand ([Recipes](./recipes)) · `--yes` |
 | `ripeat add <name> --url <https address> --sha256 <hex>` | Drafts a recipe for a vendor `.dmg`, `.pkg`, `.msi` or `.exe`, after checking the checksum and the vendor's signature ([Vendor installers](./installers)). `--kind`, `--app`, `--signer`, `--product`, `--args`, `--uninstall-args`, `--unsigned` |
 | `ripeat bundle` | `export <profile> [file] [--force]`, `import <file-or-https-url> [name] [--sha256 <hex>] [--allow-shell] [--force]`: share a profile together with the recipes you added ([Bundles: profile + recipes](./bundles)). Importing shows and rates every recipe and asks you; there is no `--yes` |
-| `ripeat profile` | `save <name> [file]`, `list`, `show <name>`, `export <name> [file]`, `import <file-or-https-url> [name]`, `remove <name>` ([Profiles: your list](./profiles)) |
+| `ripeat profile` | `create <name> [tool ...] [--no-edit]` (opens your editor), `edit <name>` (opens a saved profile in your editor), `save <name> [file]`, `list`, `show <name>`, `export <name> [file]`, `import <file-or-https-url> [name]`, `remove <name>` ([Profiles: your list](./profiles)) |
 | `ripeat tap` | Recipe packs from GitHub or an https address: `list`, `show <name>`, `add owner/repo` or `add https://...` (`--ref`, `--sha256`, `--as`, `--allow-shell`), `update [name]`, `remove <name>` ([Recipe packs (taps)](./taps)). Adding and updating ask you; there is no `--yes` |
 | `ripeat drafts` | Recipes an AI assistant prepared: `list`, `show <name>`, `approve <name>`, `reject <name>` ([Drafts from an assistant](./drafts)). Approving asks you; there is no `--yes` |
 

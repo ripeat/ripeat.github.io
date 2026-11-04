@@ -36,6 +36,8 @@ If there are no tool names and no profile, `install` stops with an explanation.
 A profile you keep using can be saved under a name, so you never have to pass a path.
 
 ```bash
+ripeat profile create web git node ripgrep   # a new profile: opens your editor with these tools listed
+ripeat profile edit web                       # change a saved profile in your editor
 ripeat profile save web ripeat.yaml    # keep ./ripeat.yaml as "web" (the file defaults to ./ripeat.yaml)
 ripeat profile list                    # the saved profiles and their tools
 ripeat profile show web                # print one
@@ -43,12 +45,15 @@ ripeat profile remove web              # delete one
 ripeat profile export web web.yaml     # write it to a file to share (without a file it prints it)
 ripeat profile import web.yaml         # save a shared file as a profile (a file or an https:// address)
 
+ripeat profile create web git node --no-edit  # save the listed tools straight away, no editor
+
 ripeat install --profile web                      # run it
 ripeat install --profile web --profile data       # run several together
 ripeat plan --profile web                         # preview, as usual
 ripeat assess --profile web                       # rate its risk ([Risk and `assess`](./assess))
 ```
 
+- **Writing one in your editor.** `ripeat profile create <name> [tool ...]` opens a new profile in your editor (`$VISUAL`, then `$EDITOR`, then `vi`, or `notepad` on Windows; a value such as `code --wait` works, a path containing a space does not). The tools you list are already in it, with a short comment on the format; leave the editor to save. `ripeat profile edit <name>` opens a saved one. When you close the editor ripeat checks the text exactly as `profile save` does (a typo such as `tool:` is an error, not silently ignored). If it is not valid it shows the error and asks whether to open the editor again; if you say no, nothing is saved and your text stays in the temporary file it names. An edit that changes nothing saves nothing. `create` refuses a name that already exists and `edit` one that does not, and each says which command to use. Both need a terminal; without one, `create <name> tool ... --no-edit` saves the listed tools directly.
 - **Finding your next step:** `ripeat profile list` shows saved profiles and their tools. After saving one, ripeat suggests assessing it before installation. `ripeat profile show` and export without a file still print the original YAML.
 - **Where:** `$RIPEAT_HOME/profiles/<name>.yaml`, in exactly the format above, so you can also edit them by hand.
 - **Names:** lower-case letters, digits, `.` `_` `-`, up to 64 characters; never a path.

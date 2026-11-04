@@ -86,3 +86,18 @@ lookup is exercised by the same job and counts as verified only while that job p
 | Restart detection | Never reports a restart |
 | Intel Macs | Built in releases, never run |
 | Signing and notarization | None, by decision: ripeat is a hobby project (release notes for maintainers) |
+
+## Not verified, on purpose
+
+These are built and unit-tested, but have not been run for real, and will not be: they need machines or files the project does not have, and it is a hobby project. If a user reports a problem, look here first.
+
+| What | Why not | What stands in |
+|---|---|---|
+| A real vendor `.pkg`, `.exe` and `.dmg` | No disposable machine with a real vendor file is kept; never run on the owner's Mac | A tiny `.pkg` and Inno Setup `.exe` built in CI (installed, found, undone), a signed PuTTY `.msi` on a real Windows machine, and a real disk image built in a unit test |
+| A real classic snap | Needs a disposable Linux machine | The strictly confined `hello` snap on the Ubuntu VM; classic is covered by unit tests of discovery, risk and the install command |
+| An Intel Mac | No Intel Mac | Built in releases, never run |
+| The real `sudo` password prompt (Linux, macOS) | No CI can type a password | `sudo` with a passwordless account on the runners |
+| Codex's decline and rollback paths | Needs a signed-in Codex session | The install path was run once in the Codex command-line tool against a stand-in `brew`; Claude Code covers accept, decline and rollback |
+| A paid or account-gated Microsoft Store app | No account | A free Store app installs and rolls back without an account |
+| A pack on GitLab or Codeberg | Not tried | A pack index on `raw.githubusercontent.com` worked, including `tap update` |
+| The Defender detection name for a freshly copied test binary | Not reported | None; ripeat is unsigned by decision (decisions.md) |
